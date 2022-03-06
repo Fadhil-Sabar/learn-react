@@ -1,0 +1,31 @@
+ axios.post('https://dev.enigmacamp.com/trainings/api/auth/login', {
+            credentials: 'include',
+            headers: {
+                "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:94.0) Gecko/20100101 Firefox/94.0",
+                "Accept": "application/json",
+                "Accept-Language": "en-US,en;q=0.5",
+                "Content-Type": "application/json",
+                "Sec-Fetch-Dest": "empty",
+                "Sec-Fetch-Mode": "cors",
+                "Sec-Fetch-Site": "same-origin",
+            },
+            referrer: "https://dev.enigmacamp.com/trainings/api/docs/",
+            body: JSON.stringify(this.body),
+            mode: 'cors'
+        })
+            .then(res => {
+                const response = res.data
+                console.log(response);
+                // this.setState({ items: response })
+            })
+            .catch(error => console.log(error))
+
+
+
+            axios.post('https://dev.enigmacamp.com/trainings/api/auth/login', {
+            headers: {
+                'accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+
+        })
