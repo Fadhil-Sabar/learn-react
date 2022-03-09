@@ -8,6 +8,7 @@ import LimitFetch from './components/fetch/LimitFetch';
 import QuranFetch from './components/fetch/QuranFetch';
 import DetailSurah from './components/fetch/DetailSurah';
 import QuranFetchA from './components/fetch/QuranFetch copy';
+import UserFetch from './components/fetch/UserFetch';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         {/* <Route path='/qurana' element={<QuranFetchA />} /> */}
         <Route path='/detail' element={<DetailSurah />} />
         <Route path="/quran/detail/:nomor" element={<DetailSurah />}/>
+        <Route path="/user" element={<UserFetch />}/>
 
         {/* <Route path='/fetch' component={LearnFetch} /> */}
       </Routes>

@@ -3,16 +3,9 @@ import React from "react";
 import Grid from '@mui/material/Grid'
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import DetailSurah from "./DetailSurah";
-import { Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button, Typography } from "@mui/material";
 import { useState, useEffect } from 'react';
 
@@ -28,6 +21,7 @@ const QuranFetchA = () => {
         }
         fetch()
         document.body.style.background = 'darkolivegreen';
+        
 
     }, [])
 
@@ -65,8 +59,24 @@ const QuranFetchA = () => {
                 <Grid item >
                     <div className="row">
                     {
-                        data.map((value) => {~
-                            return <div><Surat value={value}/></div> 
+                        data.map((value) => {
+                            return  <div className="col-md-4">
+                            <Card sx={{ my: 2 }} >
+                            <CardContent className="text-center">
+                                <div className="row py-3 border-bottom">
+                                    <div className="col-md-3">
+                                        <Typography variant="body2">{value.nomor}</Typography>
+                                    </div>
+                                    <div className="col">
+                                        <Typography variant="body2">{value.nama}</Typography>
+                                    </div>
+                                </div>
+                                <Button >
+                                    <Link style={{ textDecoration: 'none' }} to={`detail/${value.nomor}`}>Detail</Link>
+                                </Button>
+                            </CardContent>
+                        </Card> 
+                        </div>
                         })
                     }
                     </div>

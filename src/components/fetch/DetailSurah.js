@@ -11,6 +11,7 @@ import DisplaySettingsIcon from '@mui/icons-material/DisplaySettings';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import RepeatIcon from '@mui/icons-material/Repeat';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const DetailSurah = () => {
     const [data, setData] = useState({});
@@ -49,6 +50,12 @@ const DetailSurah = () => {
         }
     }, [fs, lang])
 
+    const copyHandler = (number, translate, ayat) => {
+        navigator.clipboard.writeText(
+            `${name}:${number}/${data.number_of_surah} \n${ayat} \n${translate}`
+            )
+    }
+
     const handleClick = () => {
         store.dispatch({
             type: 'ADD'
@@ -60,9 +67,9 @@ const DetailSurah = () => {
 
         return (
             <div>
-                <Container >
+                <Container className='px=0' >
                     <Grid container spacing={2}>
-                        <Grid item sx={{ width: '100%' }} >
+                        <Grid className="px-0" item xs={12} md={12} sx={{minWidth: 0}}>
                         <Accordion>
                                 <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
@@ -89,16 +96,20 @@ const DetailSurah = () => {
                             ayahs.map((value) => {
                             return <Fragment>
                             <Card  sx={{marginBottom: '20px'}}>
-                            <CardContent>
+                            <CardContent onCopy={() => {copyHandler(value.number, value.translation_id, value.text)}}>
                                 <div className='row'>
-                                    <div className='col d-flex align-items-center pt-3 '>
+                                    <div className='col-1 d-flex align-items-center pt-3 '>
                                         <Typography variant='subtitle1'>{value.number}</Typography>
                                     </div>
-                                    <div className='col-md-11'>
+                                    <div className='col-md-10 col-xs-12'>
                                     <Typography variant="h4" sx={textSize}>{value.text}</Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         {lang === 'id' ? value.translation_id : value.translation_en}
                                     </Typography>
+                                    </div>
+                                    <div className='col-1 gx-0'>
+                                        <Button sx={btnColor} onClick={() => copyHandler(value.number, value.translation_id, value.text)}>
+                                            {window.innerWidth > 600 ? <ContentCopyIcon /> : ''}                                        </Button>
                                     </div>
                                 </div>
 
